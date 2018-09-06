@@ -26,6 +26,13 @@ transition:17s;
 transition-timing-function:linear;
 }
 
+/*scoreboard styles*/
+.scoreboard{
+	float:right;
+	position:absolute;
+	margin-left: 80%;
+}
+
 /*create the valves at the top*/
 
 .threeValves{

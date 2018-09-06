@@ -4,10 +4,10 @@ const valve1=document.querySelector(".valve1");
 const valve2=document.querySelector(".valve2");
 const valve3=document.querySelector(".valve3");
 
+let points = 0;
+
 let valve1Note = document.querySelector(".valve1-note");
 valve1Note.classList.contains("")
-
-console.log(beat)
 
 
 //this creates all the beats
@@ -163,22 +163,98 @@ function arraysEqual(arr1, arr2) {
 
 let valvePosition = getOffset(valve1).top;
 
-
-
 //if vavle 1 div has similar position to valve 1 AND correct combo of valves is being pushed
 
+let opennotes = document.querySelectorAll(".open-note");
 let valve1notes = document.querySelectorAll(".valve1-note");
+let valve2notes = document.querySelectorAll(".valve2-note");
+let valve12notes = document.querySelectorAll(".combo12");
+let valve23notes = document.querySelectorAll(".combo23");
+let valve13notes = document.querySelectorAll(".combo13");
+let valve123notes = document.querySelectorAll(".combo123");
 
 function checkFor1stValve(){
   valvePosition = getOffset(valve1).top;
-  valve1notes = document.querySelectorAll("valve1-note");
-  let notePosition = document.querySelectorAll(".valve1-note")[0];
-  notePosition = getOffset(notePosition).top;
+  valve1notes = document.querySelectorAll(".valve1-note");
+  valve1notes.forEach(function(el){
+    notePosition = getOffset(el).top;
+    if(valvePosition -140 + 4 > notePosition && valvePosition -140 -16 < notePosition){
+      if(arraysEqual(currentValves, ["air",1])){
+      points+=1;
+      }
+    }
 //140 sets the valve to a detectable position, +4 and -16 is the margin of error (of 20 pixels)
-  if(valvePosition -140 + 4 > notePosition && valvePosition -140 -16 < notePosition){
-    if(arraysEqual(currentValves, ["air",1])){
-    console.log("YEAH");
-  }}
+  });
+}
+
+function checkFor2ndValve(){
+  valvePosition = getOffset(valve2).top;
+  valve2notes = document.querySelectorAll(".valve2-note");
+  valve2notes.forEach(function(el){
+    notePosition = getOffset(el).top;
+    if(valvePosition -140 + 4 > notePosition && valvePosition -140 -16 < notePosition){
+      if(arraysEqual(currentValves, ["air",2])){
+      points+=1;
+      }
+    }
+//140 sets the valve to a detectable position, +4 and -16 is the margin of error (of 20 pixels)
+  });
+}
+
+function checkFor12Valve(){
+  valvePosition = getOffset(valve2).top;
+  valve12notes = document.querySelectorAll(".combo12");
+  valve12notes.forEach(function(el){
+    notePosition = getOffset(el).top;
+    if(valvePosition -140 + 4 > notePosition && valvePosition -140 -16 < notePosition){
+      if(arraysEqual(currentValves, ["air",2,1])){
+      points+=1;
+      }
+    }
+//140 sets the valve to a detectable position, +4 and -16 is the margin of error (of 20 pixels)
+  });
+}
+
+function checkFor23Valve(){
+  valvePosition = getOffset(valve2).top;
+  valve23notes = document.querySelectorAll(".combo23");
+  valve23notes.forEach(function(el){
+    notePosition = getOffset(el).top;
+    if(valvePosition -140 + 4 > notePosition && valvePosition -140 -16 < notePosition){
+      if(arraysEqual(currentValves, ["air",2,3])){
+      points+=1;
+      }
+    }
+//140 sets the valve to a detectable position, +4 and -16 is the margin of error (of 20 pixels)
+  });
+}
+
+function checkFor13Valve(){
+  valvePosition = getOffset(valve2).top;
+  valve13notes = document.querySelectorAll(".combo13");
+  valve13notes.forEach(function(el){
+    notePosition = getOffset(el).top;
+    if(valvePosition -140 + 4 > notePosition && valvePosition -140 -16 < notePosition){
+      if(arraysEqual(currentValves, ["air",1,3])){
+      points+=1;
+      }
+    }
+//140 sets the valve to a detectable position, +4 and -16 is the margin of error (of 20 pixels)
+  });
+}
+
+function checkFor123Valve(){
+  valvePosition = getOffset(valve2).top;
+  valve123notes = document.querySelectorAll(".combo123");
+  valve123notes.forEach(function(el){
+    notePosition = getOffset(el).top;
+    if(valvePosition -140 + 4 > notePosition && valvePosition -140 -16 < notePosition){
+      if(arraysEqual(currentValves, ["air",1,2,3])){
+      points+=1;
+      }
+    }
+//140 sets the valve to a detectable position, +4 and -16 is the margin of error (of 20 pixels)
+  });
 }
 
 
@@ -190,9 +266,20 @@ function checkFor1stValve(){
 // }
 
 setInterval(function(){ 
-    checkFor1stValve();  
+    checkFor1stValve();
+    checkFor2ndValve();
+    checkFor12Valve();
+    checkFor13Valve();
+    checkFor23Valve(); 
+    checkFor123Valve();
 }, 1);
 
+let scoreDisplay = document.querySelector(".score")
+
+
+setInterval(function(){ 
+ scoreDisplay.innerHTML = points;
+}, 1);
 
 
 
