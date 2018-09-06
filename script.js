@@ -11,7 +11,7 @@ console.log(beat)
 
 
 //this creates all the beats
-for(let i=0;i<40;i++){
+for(let i=0;i<90;i++){
 	for(let k=0;k<beat.length;k++){
 		beat[k].innerHTML+="<hr>"
 	}	
@@ -75,7 +75,6 @@ kd.run(function () {
 kd.SPACE.down(function(){
   meter.style.width="0%";
   meter.style.transition="17s";
-    valve1.style.border="6px solid black";
     if(!currentValves.includes("air")){
       currentValves.push("air");
     }
@@ -126,21 +125,81 @@ kd.SHIFT.up(function(){
   remove(currentValves,3)
 });
 
+let test = document.getElementById("testing");
+
 setInterval(function(){ 
-  console.log(currentValves) 
+  // console.log(currentValves) 
+
 }, 1000);
 
 
 //collision logic
 
+//THANK YOU ADAM GRANT FROM STACK OVERFLOW
+//FOR THIS AMAZING AND SIMLPLE getOffset FUNCTION
+//https://stackoverflow.com/questions/442404/retrieve-the-position-x-y-of-an-html-element
+
+function getOffset(el) {
+  const rect = el.getBoundingClientRect();
+  return {
+    left: rect.left + window.scrollX,
+    top: rect.top + window.scrollY
+  };
+}
+
+//props to 
+//https://stackoverflow.com/questions/6229197/how-to-know-if-two-arrays-have-the-same-values
+function arraysEqual(arr1, arr2) {
+    if (!Array.isArray(arr1) || ! Array.isArray(arr2) || arr1.length !== arr2.length)
+      return false;
+    var arr1 = arr1.concat().sort();
+    var arr2 = arr2.concat().sort();
+    for (var i = 0; i < arr1.length; i++) {
+        if (arr1[i] !== arr2[i])
+            return false;
+    }
+    return true;
+}
+
+let valvePosition = getOffset(valve1).top;
+
+
+
+//if vavle 1 div has similar position to valve 1 AND correct combo of valves is being pushed
+
+let valve1notes = document.querySelectorAll(".valve1-note");
+
+function checkFor1stValve(){
+  valvePosition = getOffset(valve1).top;
+  valve1notes = document.querySelectorAll("valve1-note");
+  let notePosition = document.querySelectorAll(".valve1-note")[0];
+  notePosition = getOffset(notePosition).top;
+//140 sets the valve to a detectable position, +4 and -16 is the margin of error (of 20 pixels)
+  if(valvePosition -140 + 4 > notePosition && valvePosition -140 -16 < notePosition){
+    if(arraysEqual(currentValves, ["air",1])){
+    console.log("YEAH");
+  }}
+}
+
+
+  // console.log("Random note position: "+valve1notes[18]);
+  // for(let i=0;i<valve1notes.length-1;i++){
+  // if(notePosition-5 > valvePosition || notePosition+5 < valvePosition){
+  //   console.log("got it")
+  // }
+// }
+
+setInterval(function(){ 
+    checkFor1stValve();  
+}, 1);
+
+
+
+
+
+
+
+
 //check for 1st valve
 
-// let circle1 = valve1;
 
-// let dx = circle1.x - circle2.x;
-// let dy = circle1.y - circle2.y;
-// let distance = Math.sqrt(dx * dx + dy * dy);
-
-// if (distance < circle1.radius + circle2.radius  && right valves are highlighted) {
-//     (console.log("poop"))
-// }

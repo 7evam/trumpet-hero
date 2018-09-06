@@ -44,7 +44,7 @@ transition-timing-function:linear;
 	border-radius: 100%;
 	margin:0px 5px;
 	margin-bottom: 80px;
-	z-index: -40;
+	z-index: 400;
 	background-image: url(https://media.musiciansfriend.com/is/image/MMGS7/Trumpet-Finger-Button-Brass/462636000373000-00-500x500.jpg);
 	background-position:center;
 	background-size: cover;
@@ -60,7 +60,7 @@ transition-timing-function:linear;
 	position:relative;
 	width:40%;
 	animation-name: notesMoving;
-	animation-duration: 40s;
+	animation-duration: 120s;
 	animation-timing-function:linear;
 	animation-iteration-count:  infinite;
 	background-color: yellow; }
