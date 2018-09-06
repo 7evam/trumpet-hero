@@ -9,6 +9,23 @@ body {
     background-color: grey;
 }
 
+/*breath meter*/
+.bar{
+height: 20px;
+  width:17%;
+  border:2px solid black;
+  margin-top: 5%;
+  margin-left: 5%;
+}
+
+.meter{
+height:100%;
+width:100%;
+background-color:red;
+transition:17s;
+transition-timing-function:linear;
+}
+
 /*create the valves at the top*/
 
 .threeValves{
@@ -28,6 +45,10 @@ body {
 	margin:0px 5px;
 	margin-bottom: 80px;
 	z-index: -40;
+	background-image: url(https://media.musiciansfriend.com/is/image/MMGS7/Trumpet-Finger-Button-Brass/462636000373000-00-500x500.jpg);
+	background-position:center;
+	background-size: cover;
+
 }
 
 
@@ -37,18 +58,15 @@ body {
 .gameplay{
 	margin:0 auto;
 	position:relative;
-	width:60%;
+	width:40%;
 	animation-name: notesMoving;
 	animation-duration: 40s;
 	animation-timing-function:linear;
 	animation-iteration-count:  infinite;
-}
+	background-color: yellow; }
 
 /*overlay the beats and notes*/
 
-.beat{
-	width:100%;
-}
 
 .beats,.notes{
 	position:absolute;
@@ -115,12 +133,14 @@ hr{
 	margin-bottom:-35px;
 }
 
+
+
 /*animation to move board!*/
 
-/*@keyframes notesMoving {
+@keyframes notesMoving {
 
 100%{
 	transform: translateY(-16000px);
 }
 
-}*/
+}
