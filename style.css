@@ -6,9 +6,18 @@
 /*this gets rid of scroller on the browser*/
 body {
     overflow-y:hidden;
+    background-color: grey;
 }
 
 /*create the valves at the top*/
+
+.threeValves{
+	display:flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 20px;
+	z-index: -4;
+}
 
 .valve{
 	width:70px;
@@ -21,13 +30,7 @@ body {
 	z-index: -40;
 }
 
-.threeValves{
-	display:flex;
-	align-items: center;
-	justify-content: center;
-	margin-top: 20px;
-	z-index: -4;
-}
+
 
 /*this makes the gameplay board of the beats and notes moving*/
 
@@ -73,17 +76,51 @@ hr{
 	transform: translate(-91px,0px)
 }
 
+.valve3-note{
+	transform: translate(91px,0px);
+}
+
+.open-note{
+	border:2px solid black;
+	background-color: white;
+	border-radius:30%;
+	width:210px;
+}
+
+.valve-combo-note{
+	display:flex;
+	justify-content: center;
+	position: relative;
+}
+
+.valve1-combo{
+	background-color: yellow;
+	position:absolute;
+	transform: translate(-91px,0px)
+}
+
+.valve2-combo{
+	background-color: black;
+	position:absolute;
+}
+
+.valve3-combo{
+	background-color: purple;
+	position:absolute;
+	transform: translate(91px,0px);
+}
+
 .qnote{
-	margin-top:45px;
+	margin-top:47px;
 	margin-bottom:-35px;
 }
 
 /*animation to move board!*/
 
-@keyframes notesMoving {
+/*@keyframes notesMoving {
 
 100%{
 	transform: translateY(-16000px);
 }
 
-}
+}*/
