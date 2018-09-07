@@ -33,6 +33,10 @@ transition-timing-function:linear;
 	margin-left: 80%;
 }
 
+.score{
+	transition:1s;
+}
+
 /*create the valves at the top*/
 
 .threeValves{
@@ -52,10 +56,9 @@ transition-timing-function:linear;
 	margin:0px 5px;
 	margin-bottom: 80px;
 	z-index: 400;
-	background-image: url(https://media.musiciansfriend.com/is/image/MMGS7/Trumpet-Finger-Button-Brass/462636000373000-00-500x500.jpg);
+	background-image: url(valve.jpg);
 	background-position:center;
 	background-size: cover;
-
 }
 
 
@@ -67,10 +70,11 @@ transition-timing-function:linear;
 	position:relative;
 	width:40%;
 	animation-name: notesMoving;
-	animation-duration: 120s;
+	animation-duration: 90s;
 	animation-timing-function:linear;
 	animation-iteration-count:  infinite;
-	background-color: yellow; }
+	background-color: yellow; 
+}
 
 /*overlay the beats and notes*/
 
@@ -108,11 +112,13 @@ hr{
 .open-note{
 	border:2px solid black;
 	background-color: white;
-	border-radius:30%;
-	width:210px;
+	border-radius:70%;
+	width:280px;
+	height:68px;
 }
 
 .valve-combo-note{
+	height:81px;
 	display:flex;
 	justify-content: center;
 	position: relative;
@@ -140,14 +146,27 @@ hr{
 	margin-bottom:-35px;
 }
 
+.hnote{
+	height:140px;
+}
+
+.rest{
+	height:70px;
+}
+
+.enote{
+	margin-top:-10px;
+	margin-bottom:-15px;
+}
+
 
 
 /*animation to move board!*/
 
 @keyframes notesMoving {
 
-100%{
+/*100%{
 	transform: translateY(-16000px);
 }
-
+*/
 }
