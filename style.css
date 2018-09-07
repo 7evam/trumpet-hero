@@ -37,6 +37,29 @@ transition-timing-function:linear;
 	transition:1s;
 }
 
+/*beats stuff*/
+
+.beats{
+	margin-top:36px;
+}
+
+.beat{
+	margin:0;
+	padding:0;
+	height:287px;
+	border-top: 1px dotted black;
+}
+
+/*every new measure has red beat*/
+.beat:nth-child(4n-3) {
+    border-top:1px solid red;
+}
+
+.beats,.notes{
+	position:absolute;
+	width:100%;
+}
+
 /*create the valves at the top*/
 
 .threeValves{
@@ -84,89 +107,100 @@ transition-timing-function:linear;
 	width:100%;
 }
 
-hr{
-	margin-bottom: 80px;
-	margin-top:80px;
-	width:100%;
-}
 
 /*logic that makes each type of note to be played*/
 
 .note{
-	width:70px;
-	height:70px;
-	background-color: green;
-	border-radius: 100%;
+	width:72px;
+	height:72px;
+	border-radius: 40%;
 	margin:0 auto;
-	z-index: 100;
+	z-index:100;
+	background-color: green;
 }
+
+.rest{
+	width:72px;
+	height:72px;
+	margin:0 auto;
+}
+
 
 .valve1-note{
 	transform: translate(-91px,0px)
 }
 
-.valve3-note{
-	transform: translate(91px,0px);
-}
-
-.open-note{
-	border:2px solid black;
-	background-color: white;
-	border-radius:70%;
-	width:280px;
-	height:68px;
-}
-
-.valve-combo-note{
-	height:81px;
+.valve-combo{
+	/*height:81px;*/
 	display:flex;
 	justify-content: center;
 	position: relative;
+
 }
 
 .valve1-combo{
-	background-color: yellow;
 	position:absolute;
 	transform: translate(-91px,0px)
 }
 
 .valve2-combo{
-	background-color: black;
 	position:absolute;
 }
 
 .valve3-combo{
-	background-color: purple;
 	position:absolute;
 	transform: translate(91px,0px);
 }
 
-.qnote{
-	margin-top:47px;
-	margin-bottom:-35px;
+.gameplay{
+	margin:0 auto;
+	position:relative;
+	width:40%;
+	animation-name: notesMoving;
+	animation-duration: 60s;
+	animation-timing-function:linear;
+	animation-iteration-count:  infinite;
+	background-color: yellow; 
 }
 
-.hnote{
-	height:140px;
+.sixteenth{
+height:72px;
 }
 
-.rest{
-	height:70px;
+.eighth{
+	height:144px;
 }
 
-.enote{
-	margin-top:-10px;
-	margin-bottom:-15px;
+.dotted-eighth{
+	height:216px;
+	/*fixed*/
 }
 
+.quarter{
+	height:288px;
+}
+
+.dotted-quarter{
+	height:432px;
+}
+
+.half{
+	height:576px;
+	/*fixed*/
+}
+
+.open{
+	width:244px;
+	background-color: yellow;
+}
 
 
 /*animation to move board!*/
 
 @keyframes notesMoving {
 
-/*100%{
-	transform: translateY(-16000px);
+100%{
+	transform: translateY(-25000px);
 }
-*/
+
 }

@@ -1,5 +1,4 @@
-const beat = document.getElementsByClassName("beat");
-const createBeat = document.createElement("hr");
+const beats = document.querySelector(".beats");
 const valve1=document.querySelector(".valve1");
 const valve2=document.querySelector(".valve2");
 const valve3=document.querySelector(".valve3");
@@ -11,51 +10,24 @@ valve1Note.classList.contains("")
 
 
 //this creates all the beats
-for(let i=0;i<90;i++){
-	for(let k=0;k<beat.length;k++){
-		beat[k].innerHTML+="<hr>"
-	}	
+for(let i=0;i<1000;i++){
+  beats.innerHTML+="<div class='beat'></div>"
 }
 
 let body = document.body;
 
 ///turns out, it's very difficult to get an  
 //accurate reading of when a key is held down
-//luckily, I found KEYDROWN, this SUPER small(.5kb) 
+//luckily, I found KEYDROWN, this SUPER small(<.5kb) 
 //and SUPER easy to use library that does the trick
 
 //BIG shout out to Jeremy Kahn at https://github.com/jeremyckahn :) :) :)
 
+//this variable will include all the valves currently being pressed
 let currentValves = [];
 
 kd.run(function () {
   kd.tick();
-});
-
-//arrow keys don't work because of keyboard ghosting...
-
-kd.LEFT.down(function(){
-  valve1.style.border="6px solid yellow";
-});
-
-kd.LEFT.up(function(){
-  valve1.style.border="6px solid white";
-});
-
-kd.DOWN.down(function(){
-  valve2.style.border="6px solid yellow";
-});
-
-kd.DOWN.up(function(){
-  valve2.style.border="6px solid white";
-});
-
-kd.RIGHT.down(function(){
-  valve3.style.border="6px solid yellow";
-});
-
-kd.RIGHT.up(function(){
-  valve3.style.border="6px solid white";
 });
 
 
@@ -67,10 +39,6 @@ function remove(array, element) {
 //spacebar for breath
 
 const meter = document.querySelector(".meter")
-
-kd.run(function () {
-  kd.tick();
-});
 
 kd.SPACE.down(function(){
   meter.style.width="0%";
@@ -133,7 +101,7 @@ setInterval(function(){
 }, 1000);
 
 
-//collision logic
+//                                     ..~~~collision logic~~~..
 
 //THANK YOU ADAM GRANT FROM STACK OVERFLOW
 //FOR THIS AMAZING AND SIMLPLE getOffset FUNCTION
@@ -149,6 +117,7 @@ function getOffset(el) {
 
 //props to 
 //https://stackoverflow.com/questions/6229197/how-to-know-if-two-arrays-have-the-same-values
+//for this smart function to determine if two arrays have the same values
 function arraysEqual(arr1, arr2) {
     if (!Array.isArray(arr1) || ! Array.isArray(arr2) || arr1.length !== arr2.length)
       return false;
@@ -165,7 +134,7 @@ let valvePosition = getOffset(valve1).top;
 
 //if vavle 1 div has similar position to valve 1 AND correct combo of valves is being pushed
 
-let opennotes = document.querySelectorAll(".open-note");
+let openNotes = document.querySelectorAll(".open-note");
 let valve1notes = document.querySelectorAll(".valve1-note");
 let valve2notes = document.querySelectorAll(".valve2-note");
 let valve12notes = document.querySelectorAll(".combo12");
@@ -178,6 +147,7 @@ function checkFor1stValve(){
   valve1notes = document.querySelectorAll(".valve1-note");
   valve1notes.forEach(function(el){
     notePosition = getOffset(el).top;
+    // the numbers after valvePosition is how sensitive the collision detection is
     if(valvePosition + 4 > notePosition && valvePosition -16 < notePosition){
       if(arraysEqual(currentValves, ["air",1])){
       points+=3;
@@ -185,7 +155,6 @@ function checkFor1stValve(){
         points-=1
       }
     }
-//140 sets the valve to a detectable position, +4 and -16 is the margin of error (of 20 pixels)
   });
 }
 
@@ -201,7 +170,6 @@ function checkFor2ndValve(){
         points-=1
       }
     }
-//140 sets the valve to a detectable position, +4 and -16 is the margin of error (of 20 pixels)
   });
 }
 
@@ -217,7 +185,6 @@ function checkFor12Valve(){
         points-=1
       }
     }
-//140 sets the valve to a detectable position, +4 and -16 is the margin of error (of 20 pixels)
   });
 }
 
@@ -233,7 +200,6 @@ function checkFor23Valve(){
         points-=1
       }
     }
-//140 sets the valve to a detectable position, +4 and -16 is the margin of error (of 20 pixels)
   });
 }
 
@@ -249,7 +215,6 @@ function checkFor13Valve(){
         points-=1
       }
     }
-//140 sets the valve to a detectable position, +4 and -16 is the margin of error (of 20 pixels)
   });
 }
 
@@ -265,19 +230,27 @@ function checkFor123Valve(){
         points-=1
       }
     }
-//140 sets the valve to a detectable position, +4 and -16 is the margin of error (of 20 pixels)
   });
 }
 
 
-  // console.log("Random note position: "+valve1notes[18]);
-  // for(let i=0;i<valve1notes.length-1;i++){
-  // if(notePosition-5 > valvePosition || notePosition+5 < valvePosition){
-  //   console.log("got it")
-  // }
-// }
+function checkForOpen(){
+  valvePosition = getOffset(valve2).top;
+  openNotes = document.querySelectorAll(".open");
+  openNotes.forEach(function(el){
+    notePosition = getOffset(el).top;
+    if(valvePosition + 4 > notePosition && valvePosition -16 < notePosition){
+      if(arraysEqual(currentValves, ["air"])){
+      points+=3;
+      } else{
+        points-=1
+      }
+    }
+  });
+}
 
 setInterval(function(){ 
+    checkForOpen();
     checkFor1stValve();
     checkFor2ndValve();
     checkFor12Valve();
