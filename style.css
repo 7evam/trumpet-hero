@@ -41,6 +41,10 @@ transition-timing-function:linear;
 
 .beats{
 	margin-top:36px;
+	
+  background: #0f2027; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #0f2027, #203a43, #2c5364); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #0f2027, #203a43, #2c5364); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .beat{
@@ -96,7 +100,6 @@ transition-timing-function:linear;
 	animation-duration: 90s;
 	animation-timing-function:linear;
 	animation-iteration-count:  infinite;
-	background-color: yellow; 
 }
 
 /*overlay the beats and notes*/
@@ -116,7 +119,10 @@ transition-timing-function:linear;
 	border-radius: 40%;
 	margin:0 auto;
 	z-index:100;
-	background-color: green;
+	background: #4776E6;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #8E54E9, #4776E6);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #8E54E9, #4776E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 }
 
 .rest{
@@ -160,7 +166,6 @@ transition-timing-function:linear;
 	animation-duration: 60s;
 	animation-timing-function:linear;
 	animation-iteration-count:  infinite;
-	background-color: yellow; 
 }
 
 .sixteenth{
