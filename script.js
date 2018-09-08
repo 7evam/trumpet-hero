@@ -3,6 +3,20 @@ const valve1=document.querySelector(".valve1");
 const valve2=document.querySelector(".valve2");
 const valve3=document.querySelector(".valve3");
 
+const audio = new Audio('corduroy.mp3');
+
+const gameplay = document.querySelector(".gameplay");
+
+
+//Google Chrome blocks audio from autoplaying without user input,
+//so I added a "press enter to begin" functionality 
+addEventListener('keypress', function (e) {
+let key = e.keyCode;
+if (key===13){
+audio.play();
+gameplay.style.animationName = "notesMoving"
+}
+});
 let points = 0;
 
 let valve1Note = document.querySelector(".valve1-note");
@@ -16,7 +30,7 @@ for(let i=0;i<1000;i++){
 
 let body = document.body;
 
-//                                     ..~~~key detection logic~~~..
+//                                  /-~~~key detection logic~~~-\
 
 ///turns out, it's very difficult to get an  
 //accurate reading of when a key is held down
@@ -247,7 +261,6 @@ function checkForOpen(){
 }
 
 const bar = document.querySelector(".bar");
-const gameplay = document.querySelector(".gameplay")
 
 function checkForAir(){
 let percentAirLeft = meter.offsetWidth/bar.offsetWidth;
@@ -276,18 +289,14 @@ setInterval(function(){
     checkFor13Valve();
     checkFor23Valve(); 
     checkFor123Valve();
+    checkForAir();
+    scoreDisplay.innerHTML = points;
 }, 1);
 
 let scoreDisplay = document.querySelector(".score")
 
 
-setInterval(function(){ 
- scoreDisplay.innerHTML = points;
-}, 1);
-
-setInterval(function(){ 
- checkForAir();
-}, 1000);
+//add event listener for enter key
 
 
 

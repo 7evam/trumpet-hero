@@ -51,7 +51,7 @@ transition-timing-function:linear;
 	margin:0;
 	padding:0;
 	height:287px;
-	border-top: 1px dotted black;
+	border-top: 1px dotted white;
 }
 
 /*every new measure has red beat*/
@@ -96,10 +96,11 @@ transition-timing-function:linear;
 	margin:0 auto;
 	position:relative;
 	width:40%;
-	animation-name: notesMoving;
-	animation-duration: 90s;
+	animation-name: POOP;
+	/*animation-name: notesMoving;*/
+	animation-duration: 69s;
 	animation-timing-function:linear;
-	animation-iteration-count:  infinite;
+	animation-iteration-count:  1;
 }
 
 /*overlay the beats and notes*/
@@ -133,8 +134,8 @@ background: linear-gradient(to right, #8E54E9, #4776E6); /* W3C, IE 10+/ Edge, F
 
 
 .valve1-note{
-	transform: translate(-91px,0px)
-	background-color:#0074D9
+	transform: translate(-91px,0px);
+	background-color:yellow;
 }
 
 .valve2-note{
@@ -151,7 +152,7 @@ background: linear-gradient(to right, #8E54E9, #4776E6); /* W3C, IE 10+/ Edge, F
 
 .valve1-combo{
 	position:absolute;
-	transform: translate(-91px,0px)
+	transform: translate(-91px,0px);
 }
 
 .valve2-combo{
@@ -162,18 +163,14 @@ background: linear-gradient(to right, #8E54E9, #4776E6); /* W3C, IE 10+/ Edge, F
 	position:absolute;
 	transform: translate(91px,0px);
 	background-color: #B10DC9;
-
 }
 
-.gameplay{
-	margin:0 auto;
-	position:relative;
-	width:40%;
-	animation-name: notesMoving;
-	animation-duration: 60s;
-	animation-timing-function:linear;
-	animation-iteration-count:  infinite;
+.open{
+	width:244px;
+	background: white;
+	border-radius: 5%;
 }
+
 
 .sixteenth{
 height:72px;
@@ -201,18 +198,16 @@ height:72px;
 	/*fixed*/
 }
 
-.open{
-	width:244px;
-	background-color: yellow;
+.whole{
+	height:1152px;
 }
-
 
 /*animation to move board!*/
 
 @keyframes notesMoving {
 
 100%{
-	transform: translateY(-25000px);
+	transform: translateY(-30600px);
 }
 
 }
