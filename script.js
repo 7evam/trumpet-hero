@@ -16,6 +16,8 @@ for(let i=0;i<1000;i++){
 
 let body = document.body;
 
+//                                     ..~~~key detection logic~~~..
+
 ///turns out, it's very difficult to get an  
 //accurate reading of when a key is held down
 //luckily, I found KEYDROWN, this SUPER small(<.5kb) 
@@ -94,11 +96,6 @@ kd.SHIFT.up(function(){
 });
 
 let test = document.getElementById("testing");
-
-setInterval(function(){ 
-  // console.log(currentValves) 
-
-}, 1000);
 
 
 //                                     ..~~~collision logic~~~..
@@ -249,6 +246,28 @@ function checkForOpen(){
   });
 }
 
+const bar = document.querySelector(".bar");
+const gameplay = document.querySelector(".gameplay")
+
+function checkForAir(){
+let percentAirLeft = meter.offsetWidth/bar.offsetWidth;
+if(percentAirLeft < .2){
+  beats.style.background = "red";
+  beats.style.transition ="10s";
+} else{
+  beats.style.background = "#0f2027";
+  beats.style.transition ="1s";
+}
+
+if(percentAirLeft<.005){
+  gameplay.style.animationDuration="0s";
+  setTimeout(function(){
+  alert("You ran out of air and passed out! Final Score: "+points);
+  },100)
+}
+
+}
+
 setInterval(function(){ 
     checkForOpen();
     checkFor1stValve();
@@ -265,6 +284,10 @@ let scoreDisplay = document.querySelector(".score")
 setInterval(function(){ 
  scoreDisplay.innerHTML = points;
 }, 1);
+
+setInterval(function(){ 
+ checkForAir();
+}, 1000);
 
 
 
