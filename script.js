@@ -117,7 +117,6 @@ let test = document.getElementById("testing");
 //THANK YOU ADAM GRANT FROM STACK OVERFLOW
 //FOR THIS AMAZING AND SIMLPLE getOffset FUNCTION
 //https://stackoverflow.com/questions/442404/retrieve-the-position-x-y-of-an-html-element
-
 function getOffset(el) {
   const rect = el.getBoundingClientRect();
   return {
@@ -141,10 +140,10 @@ function arraysEqual(arr1, arr2) {
     return true;
 }
 
+//if valve 1 div has similar position to valve 1 AND correct combo of valves is being pushed
+
+//I have to use let statements here because the values change if the window is resized
 let valvePosition = getOffset(valve1).top;
-
-//if vavle 1 div has similar position to valve 1 AND correct combo of valves is being pushed
-
 let openNotes = document.querySelectorAll(".open-note");
 let valve1notes = document.querySelectorAll(".valve1-note");
 let valve2notes = document.querySelectorAll(".valve2-note");
@@ -152,18 +151,43 @@ let valve12notes = document.querySelectorAll(".combo12");
 let valve23notes = document.querySelectorAll(".combo23");
 let valve13notes = document.querySelectorAll(".combo13");
 let valve123notes = document.querySelectorAll(".combo123");
+const comboPairs = [
+[openNotes,["air"]],
+[valve1notes,["air",1]],
+[valve2notes,["air",2]],
+[valve12notes,["air",1,2]],
+[valve23notes,["air",2,3]],
+[valve13notes,["air",1,3]],
+[valve123notes,["air",1,2,3]],
+];
+
+// attempting to refactor all the functions below:
+function checkForNote(){
+  //i update the variable here because it changes if the window size changes
+  valvePosition = getOffset(valve1).top;
+
+for(let i=0;i<comboPairs.length;i++){
+  console.log(comboPairs[i][0]+" + "+comboPairs[i][1]);
+}
+}
+
+
+//each of these functions checks for different combos
 
 function checkFor1stValve(){
   valvePosition = getOffset(valve1).top;
   valve1notes = document.querySelectorAll(".valve1-note");
+
   valve1notes.forEach(function(el){
     notePosition = getOffset(el).top;
     // the numbers after valvePosition is how sensitive the collision detection is
     if(valvePosition + 4 > notePosition && valvePosition -16 < notePosition){
       if(arraysEqual(currentValves, ["air",1])){
       points+=3;
+      el.style.background="green";
       }else{
         points-=1
+        el.style.background="red";
       }
     }
   });

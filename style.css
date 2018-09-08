@@ -13,7 +13,6 @@ body {
 /*breath meter*/
 .bar{
 height: 20px;
-  width:17%;
   border:2px solid black;
   margin-top: 5%;
   margin-left: 5%;
@@ -26,15 +25,22 @@ background-color:red;
 transition-timing-function:linear;
 }
 
+.air-meter{
+	width:20%;
+	position:fixed;
+	margin-top: 5%;
+}
+
+.air-meter h3{
+ text-align: center;
+}
+
 /*scoreboard styles*/
 .scoreboard{
 	float:right;
-	position:absolute;
-	margin-left: 80%;
-}
-
-.score{
-	transition:1s;
+	position:fixed;
+	margin-left: 75%;
+	margin-top: 5%;
 }
 
 /*beats stuff*/
