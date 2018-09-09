@@ -20,7 +20,7 @@ gameplay.style.animationName = "notesMoving"
 let points = 0;
 
 let valve1Note = document.querySelector(".valve1-note");
-valve1Note.classList.contains("")
+valve1Note.classList.contains("");
 
 
 //this creates all the beats
@@ -177,11 +177,10 @@ for(let i=0;i<comboPairs.length;i++){
 function checkFor1stValve(){
   valvePosition = getOffset(valve1).top;
   valve1notes = document.querySelectorAll(".valve1-note");
-
   valve1notes.forEach(function(el){
     notePosition = getOffset(el).top;
     // the numbers after valvePosition is how sensitive the collision detection is
-    if(valvePosition + 4 > notePosition && valvePosition -16 < notePosition){
+    if(valvePosition +18 + 10 > notePosition && valvePosition +18 -10 < notePosition){
       if(arraysEqual(currentValves, ["air",1])){
       points+=3;
       el.style.background="green";
@@ -200,13 +199,17 @@ function checkFor2ndValve(){
     notePosition = getOffset(el).top;
     if(valvePosition + 4 > notePosition && valvePosition -16 < notePosition){
       if(arraysEqual(currentValves, ["air",2])){
+        el.style.background="green";
       points+=3;
       }else{
         points-=1
+         el.style.background="red";
       }
     }
   });
 }
+
+let comboChangeColor = '';
 
 function checkFor12Valve(){
   valvePosition = getOffset(valve2).top;
@@ -215,9 +218,15 @@ function checkFor12Valve(){
     notePosition = getOffset(el).top;
     if(valvePosition -30 + 4 > notePosition && valvePosition -30 -16 < notePosition){
       if(arraysEqual(currentValves, ["air",2,1])){
+        comboChangeColor = el.childNodes;
+        comboChangeColor[1].style.background="green"
+        comboChangeColor[3].style.background="green"
       points+=3;
       }else{
         points-=1
+         comboChangeColor = el.childNodes;
+        comboChangeColor[1].style.background="red"
+        comboChangeColor[3].style.background="red"
       }
     }
   });
@@ -230,8 +239,14 @@ function checkFor23Valve(){
     notePosition = getOffset(el).top;
     if(valvePosition + 4 > notePosition && valvePosition -16 < notePosition){
       if(arraysEqual(currentValves, ["air",2,3])){
+        comboChangeColor = el.childNodes;
+        comboChangeColor[1].style.background="green"
+        comboChangeColor[3].style.background="green"
       points+=3;
       }else{
+        comboChangeColor = el.childNodes;
+        comboChangeColor[1].style.background="red"
+        comboChangeColor[3].style.background="red"
         points-=1
       }
     }
@@ -245,8 +260,14 @@ function checkFor13Valve(){
     notePosition = getOffset(el).top;
     if(valvePosition + 4 > notePosition && valvePosition -16 < notePosition){
       if(arraysEqual(currentValves, ["air",1,3])){
+        comboChangeColor = el.childNodes;
+        comboChangeColor[1].style.background="green"
+        comboChangeColor[3].style.background="green"
       points+=3;
       }else{
+        comboChangeColor = el.childNodes;
+        comboChangeColor[1].style.background="red"
+        comboChangeColor[3].style.background="red"
         points-=1
       }
     }
@@ -260,8 +281,16 @@ function checkFor123Valve(){
     notePosition = getOffset(el).top;
     if(valvePosition + 4 > notePosition && valvePosition -16 < notePosition){
       if(arraysEqual(currentValves, ["air",1,2,3])){
+                comboChangeColor = el.childNodes;
+        comboChangeColor[1].style.background="green"
+        comboChangeColor[3].style.background="green"
+        comboChangeColor[5].style.background="green"
+        el.style.background="green";
       points+=3;
       } else{
+        comboChangeColor[1].style.background="red"
+        comboChangeColor[3].style.background="red"
+        comboChangeColor[5].style.background="red"
         points-=1
       }
     }
@@ -276,8 +305,10 @@ function checkForOpen(){
     notePosition = getOffset(el).top;
     if(valvePosition + 4 > notePosition && valvePosition -16 < notePosition){
       if(arraysEqual(currentValves, ["air"])){
+        el.style.background="green";
       points+=3;
       } else{
+        el.style.background="red";
         points-=1
       }
     }
@@ -298,6 +329,8 @@ if(percentAirLeft < .2){
 
 if(percentAirLeft<.005){
   gameplay.style.animationDuration="0s";
+  audio.pause();
+  audio.currentTime=0;
   setTimeout(function(){
   alert("You ran out of air and passed out! Final Score: "+points);
   },100)

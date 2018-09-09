@@ -5,17 +5,12 @@
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-<!-- 	<audio autoplay>
-	<source src="corduroy.mp3" type="audio/mpeg">
- 	 <source src="corduroy.ogg" type="audio/ogg">
-  Your browser does not support the audio element.
-</audio> -->
-<div class="air-meter">
-<h3>Air:</h3>
-	<div class="bar">
-  		<div class='meter'></div>
-	</div>	
-</div>
+	<div class="air-meter">
+		<h3>Air</h3>
+ 		<div class="bar">
+   			<div class='meter'></div>
+ 		</div>
+	</div>
 
 	<div class="scoreboard">
 		<h2>Your Score is: <span class="score"></span></h2>
@@ -26,12 +21,21 @@
 		<div class='valve valve3'></div>
 	</div>
 	<div class="gameplay">
+
 		<div class="beats"></div>
+	<!-- 		<div class="beat">
+				<p>The . key controls first valve (on the left)</p>
+				<p>The ? key controls second valve</p>
+				<p>Shift controls third valve</p>
+				<p>Space controls air</p>
+				<br>
+				<p>Play as many notes as you can. Make sure to blow air while playing a note, but don't run out of air!</p>
+			</div> -->
+		
 		<div class=notes>
 			<!--KEY-->
 			<!--valves to use | value | note/rest  -->
 			<!-- IF it's a combo of valves, must wrap valves used in 'valve-combo' div -->
-
 			<div class="whole rest"></div>
 			<div class="whole rest"></div>
 			<div class="whole rest"></div>
@@ -236,105 +240,8 @@
 			</div>
 			<div class='open dotted-quarter note'></div>
 			<div class='quarter rest'></div>
-
-
-			
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-			<div class='quarter rest'></div><div class='quarter rest'></div><div class='quarter rest'></div><div class='quarter rest'></div><div class='quarter rest'></div><div class='quarter rest'></div><div class='quarter rest'></div><div class='quarter rest'></div><div class='quarter rest'></div><div class='quarter rest'></div><div class='quarter rest'></div><div class='quarter rest'></div><div class='quarter rest'></div>
-			
-
-			<div class='valve-combo combo23 dotted-eighth'>
-				<div class='valve2-combo dotted-eighth note'></div>
-				<div class='valve3-combo dotted-eighth note'></div>
-			</div>
-
-			<div class='valve-combo combo12 sixteenth'>
-				<div class='valve1-combo sixteenth note'></div>
-				<div class='valve2-combo sixteenth note'></div>
-			</div>
-
-			<div class='quarter rest'></div>
-
-			<!-- measure 123 -->
-			<div class='valve1-note eighth note'></div>
-			<div class='valve1-note eighth note'></div>
-
-			<div class='valve-combo combo123 sixteenth'>
-			<div class='valve1-combo sixteenth note'></div>
-			<div class='valve2-combo sixteenth note'></div>
-			<div class='valve3-combo sixteenth note'></div>
-			</div>
-
-			<div class="open sixteenth note"></div>
-			<div class='valve-combo combo123 eighth'>
-			<div class='valve1-combo eighth note'></div>
-			<div class='valve2-combo eighth note'></div>
-			<div class='valve3-combo eighth note'></div>
-			</div>
-
-
-			<div class='valve1-note sixteenth note'></div>
-			<div class='valve-combo combo12 sixteenth'>
-				<div class='valve1-combo sixteenth note'></div>
-				<div class='valve2-combo sixteenth note'></div>
-			</div>
-			<div class='valve1-note sixteenth note'></div>
-			<div class='valve1-note sixteenth note'></div>
-			<div class='quarter rest'></div>
-
-			<!-- measure 3 -->
-			<div class='eighth rest'></div>			
-			<div class='valve1-note eighth note'></div>
-			<div class='valve1-note eighth note'></div>
-			<div class='valve1-note sixteenth note'></div>
-			<div class='valve2-note sixteenth note'></div>
-			<div class='valve1-note eighth note'></div>
-			<div class='valve1-note eighth note'></div>
-			<div class='valve1-note eighth note'></div>
-			<div class='valve1-note eighth note'></div>
-
-			<div class='quarter rest'></div>
-			<div class='quarter rest'></div>
-
-			<div class='valve1-note eighth note'></div>
-			<div class='valve1-note eighth note'></div>
-			<div class='valve1-note sixteenth note'></div>
-			<div class='valve1-note sixteenth note'></div>
-			<div class='valve1-note eighth note'></div>
-			<div class='valve1-note sixteenth note'></div>
-			<div class='valve2-note sixteenth note'></div>
-			<div class='valve1-note sixteenth note'></div>
-			<div class='valve1-note sixteenth note'></div>
-			<div class='quarter rest'></div>
-
-
-
-
-
-			<div class='note valve1-note sixteenth'></div>
-	
-			<div class='note valve1-note hnote'></div>
-			<div class='note valve1-note hnote'></div>
-
-			<div class='note valve1-note quarter'></div>
-			<div class='note valve1-note quarter'></div>
-			<div class='rest quarter'></div>
-			<div class='note valve1-note quarter'></div>
 		</div>
+	</div>
 <!-- <script type="text/javascript" src="https://jeremyckahn.github.io/keydrown/dist/keydrown.min.js"></script> -->
 <script type="text/javascript" src="keydrown.js"></script>
 <script type="text/javascript" src="script.js"></script>

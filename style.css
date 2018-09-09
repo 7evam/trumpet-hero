@@ -6,16 +6,24 @@
 /*this gets rid of scroller on the browser*/
 body {
     overflow-y:hidden;
-    background-image: url("http://getwallpapers.com/wallpaper/full/7/8/c/72870.jpg") !important;
+    background-image: url("http://getwallpapers.com/wallpaper/full/7/8/c/72870.jpg");
     background-position: center;
 }
 
 /*breath meter*/
+.air-meter{
+ text-align: center;
+ width:20%;
+ position: absolute;
+ margin-top:4%;
+ margin-left:2%;
+}
+
 .bar{
 height: 20px;
   border:2px solid black;
-  margin-top: 5%;
   margin-left: 5%;
+  width:100%;
 }
 
 .meter{
@@ -25,22 +33,12 @@ background-color:red;
 transition-timing-function:linear;
 }
 
-.air-meter{
-	width:20%;
-	position:fixed;
-	margin-top: 5%;
-}
-
-.air-meter h3{
- text-align: center;
-}
-
 /*scoreboard styles*/
 .scoreboard{
 	float:right;
-	position:fixed;
+	position:absolute;
 	margin-left: 75%;
-	margin-top: 5%;
+	margin-top:5%;
 }
 
 /*beats stuff*/
@@ -70,13 +68,17 @@ transition-timing-function:linear;
 	width:100%;
 }
 
+.beat{
+	color:white;
+	text-align: center;
+}
 /*create the valves at the top*/
 
 .threeValves{
 	display:flex;
 	align-items: center;
 	justify-content: center;
-	margin-top: 20px;
+	margin-top: 5%;
 	z-index: -4;
 }
 
@@ -102,7 +104,7 @@ transition-timing-function:linear;
 	margin:0 auto;
 	position:relative;
 	width:40%;
-	animation-name: POOP;
+	animation-name:;
 	/*animation-name: notesMoving;*/
 	animation-duration: 69s;
 	animation-timing-function:linear;
@@ -149,7 +151,6 @@ background: linear-gradient(to right, #8E54E9, #4776E6); /* W3C, IE 10+/ Edge, F
 }
 
 .valve-combo{
-	/*height:81px;*/
 	display:flex;
 	justify-content: center;
 	position: relative;
@@ -188,7 +189,6 @@ height:72px;
 
 .dotted-eighth{
 	height:216px;
-	/*fixed*/
 }
 
 .quarter{
@@ -201,7 +201,6 @@ height:72px;
 
 .half{
 	height:576px;
-	/*fixed*/
 }
 
 .whole{
