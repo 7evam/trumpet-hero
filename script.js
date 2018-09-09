@@ -2,30 +2,41 @@ const beats = document.querySelector(".beats");
 const valve1=document.querySelector(".valve1");
 const valve2=document.querySelector(".valve2");
 const valve3=document.querySelector(".valve3");
+let scoreDisplay = document.querySelector(".score")
 
 const audio = new Audio('corduroy.mp3');
 
 const gameplay = document.querySelector(".gameplay");
 
+
+//modal logic
 const gameStartButton = document.querySelector("#gameStartButton");
 const startModal = document.querySelector(".startModal");
-const blurredElements = document.querySelectorAll(".blur")
+const blurredElements = document.querySelectorAll(".blur");
+const gameOverModal = document.querySelector(".gameOverModal");
 
 
-addEventListener("click",function(){
+//game start modal
+gameStartButton.addEventListener("click",function(){
   startModal.style.display="none"
   blurredElements.forEach(function(el){
     el.style.filter="none"
   })
 });
 
+
+
 //Google Chrome blocks audio from autoplaying without user input,
 //so I added a "press enter to begin" functionality 
 addEventListener('keypress', function (e) {
 let key = e.keyCode;
-if (key===13){
+if (key===13 && startModal.style.display==="none"){
 audio.play();
 gameplay.style.animationName = "notesMoving"
+setTimeout(function(){
+audio.pause();
+audio.currentTime=0;
+},68000)
 }
 });
 let points = 0;
@@ -342,7 +353,7 @@ if(percentAirLeft<.005){
   audio.pause();
   audio.currentTime=0;
   setTimeout(function(){
-  alert("You ran out of air and passed out! Final Score: "+points);
+  gameOverModal.style.display="block"
   },100)
 }
 
@@ -362,7 +373,7 @@ setInterval(function(){
     scoreDisplay.innerHTML = points;
 }, 1);
 
-let scoreDisplay = document.querySelector(".score")
+
 
 
 

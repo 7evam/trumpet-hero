@@ -12,11 +12,23 @@
 	<div class="modal-content">
 		<img src="tptHeroLogo.png" alt="Trumpet hero logo"/>
 	<p>Hey trumpet hero!</p>
-	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+	<p>Do you frequently wake up in the middle of the night wondering what it's like to play trumpet without learning how to form an embouchure?</p>
+	<p>Okay maybe not. But now I bet you're wondering!</p>
+	<p>Just push the right valves at the right times while blowing air</p>
+	<p>The gray notes are open and require no valves, just make sure you're blowing air!</p>
 	<button id="gameStartButton">Ok!</button>
 	</div>
 </div>
+
+<div class="modal gameOverModal">
+	<div class="modal-content">
+		<img src="tptHeroLogo.png" alt="Trumpet hero logo"/>
+	<p id="ending message"></p>
+	<p>Your final score is <span class="finalScore"></span></p>
+	<button id="gameStartButton">Play Again</button>
+	</div>
+</div>
+
 
 	<div class="air-meter blur">
 		<h3>Air</h3>
@@ -59,6 +71,7 @@
 			<!--KEY-->
 			<!--valves to use | value | note/rest  -->
 			<!-- IF it's a combo of valves, must wrap valves used in 'valve-combo' div -->
+			<div class="whole rest"></div>
 			<div class="whole rest"></div>
 			<div class="whole rest"></div>
 			<div class="whole rest"></div>

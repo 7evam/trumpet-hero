@@ -27,18 +27,27 @@ body {
     text-align: center;
 }
 
+.gameOverModal{
+	display:none;
+}
+
 .blur{
 	filter: blur(2px);
 }
 
 .modal p{
 	margin-top: 3%;
-	font-size: 36px;
+	font-size: 28px;
 }
 
 .modal img{
-	width:40%;
+	width:70%;
 	margin-top: 5%;
+}
+
+.modal-content{
+	margin:0 auto;
+	width:60%;
 }
 
 .modal button{
