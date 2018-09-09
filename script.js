@@ -73,39 +73,39 @@ kd.SPACE.up(function(){
 //need to use these keys because of keyboard ghosting
 
 kd.PERIOD.down(function(){
-    valve1.style.border="6px solid black";
+    valve1.style.border="6px solid #0074D9";
     if(!currentValves.includes(1)){
       currentValves.push(1);
     }
 });
 
 kd.PERIOD.up(function(){
-    valve1.style.border="6px solid white";
+    valve1.style.border="6px solid #C1C4C3";
     remove(currentValves,1)
 });
 
 
 kd.QMARK.down(function(){
-    valve2.style.border="6px solid black";
+    valve2.style.border="6px solid #FFDC00";
     if(!currentValves.includes(2)){
     currentValves.push(2);
   }
 });
 
 kd.QMARK.up(function(){
-    valve2.style.border="6px solid white";
+    valve2.style.border="6px solid #C1C4C3";
     remove(currentValves,2)
 });
 
 kd.SHIFT.down(function(){
-  valve3.style.border="6px solid black";
+  valve3.style.border="6px solid #FF851B";
   if(!currentValves.includes(3)){
   currentValves.push(3);
   }
 });
 
 kd.SHIFT.up(function(){
-  valve3.style.border="6px solid white";
+  valve3.style.border="6px solid #C1C4C3";
   remove(currentValves,3)
 });
 
@@ -175,35 +175,35 @@ for(let i=0;i<comboPairs.length;i++){
 //each of these functions checks for different combos
 
 function checkFor1stValve(){
-  valvePosition = getOffset(valve1).top;
+  valvePosition = getOffset(valve1).top +18;
   valve1notes = document.querySelectorAll(".valve1-note");
   valve1notes.forEach(function(el){
     notePosition = getOffset(el).top;
     // the numbers after valvePosition is how sensitive the collision detection is
-    if(valvePosition +18 + 10 > notePosition && valvePosition +18 -10 < notePosition){
+    if(valvePosition+ 10 > notePosition && valvePosition-10 < notePosition){
       if(arraysEqual(currentValves, ["air",1])){
       points+=3;
-      el.style.background="green";
+      el.style.background="#2ECC40";
       }else{
         points-=1
-        el.style.background="red";
+        el.style.background="#FF4136";
       }
     }
   });
 }
 
 function checkFor2ndValve(){
-  valvePosition = getOffset(valve2).top;
+  valvePosition = getOffset(valve2).top +18;
   valve2notes = document.querySelectorAll(".valve2-note");
   valve2notes.forEach(function(el){
     notePosition = getOffset(el).top;
     if(valvePosition + 4 > notePosition && valvePosition -16 < notePosition){
       if(arraysEqual(currentValves, ["air",2])){
-        el.style.background="green";
+        el.style.background="#2ECC40";
       points+=3;
       }else{
         points-=1
-         el.style.background="red";
+         el.style.background="#FF4136";
       }
     }
   });
@@ -212,41 +212,41 @@ function checkFor2ndValve(){
 let comboChangeColor = '';
 
 function checkFor12Valve(){
-  valvePosition = getOffset(valve2).top;
+  valvePosition = getOffset(valve2).top +18;
   valve12notes = document.querySelectorAll(".combo12");
   valve12notes.forEach(function(el){
     notePosition = getOffset(el).top;
-    if(valvePosition -30 + 4 > notePosition && valvePosition -30 -16 < notePosition){
+    if(valvePosition + 4 > notePosition && valvePosition-16 < notePosition){
       if(arraysEqual(currentValves, ["air",2,1])){
         comboChangeColor = el.childNodes;
-        comboChangeColor[1].style.background="green"
-        comboChangeColor[3].style.background="green"
+        comboChangeColor[1].style.background="#2ECC40"
+        comboChangeColor[3].style.background="#2ECC40"
       points+=3;
       }else{
         points-=1
          comboChangeColor = el.childNodes;
-        comboChangeColor[1].style.background="red"
-        comboChangeColor[3].style.background="red"
+        comboChangeColor[1].style.background="#FF4136"
+        comboChangeColor[3].style.background="#FF4136"
       }
     }
   });
 }
 
 function checkFor23Valve(){
-  valvePosition = getOffset(valve2).top;
+  valvePosition = getOffset(valve2).top+18;
   valve23notes = document.querySelectorAll(".combo23");
   valve23notes.forEach(function(el){
     notePosition = getOffset(el).top;
     if(valvePosition + 4 > notePosition && valvePosition -16 < notePosition){
       if(arraysEqual(currentValves, ["air",2,3])){
         comboChangeColor = el.childNodes;
-        comboChangeColor[1].style.background="green"
-        comboChangeColor[3].style.background="green"
+        comboChangeColor[1].style.background="#2ECC40"
+        comboChangeColor[3].style.background="#2ECC40"
       points+=3;
       }else{
         comboChangeColor = el.childNodes;
-        comboChangeColor[1].style.background="red"
-        comboChangeColor[3].style.background="red"
+        comboChangeColor[1].style.background="#FF4136"
+        comboChangeColor[3].style.background="#FF4136"
         points-=1
       }
     }
@@ -254,20 +254,20 @@ function checkFor23Valve(){
 }
 
 function checkFor13Valve(){
-  valvePosition = getOffset(valve2).top;
+  valvePosition = getOffset(valve2).top+18;
   valve13notes = document.querySelectorAll(".combo13");
   valve13notes.forEach(function(el){
     notePosition = getOffset(el).top;
     if(valvePosition + 4 > notePosition && valvePosition -16 < notePosition){
       if(arraysEqual(currentValves, ["air",1,3])){
         comboChangeColor = el.childNodes;
-        comboChangeColor[1].style.background="green"
-        comboChangeColor[3].style.background="green"
+        comboChangeColor[1].style.background="#2ECC40"
+        comboChangeColor[3].style.background="#2ECC40"
       points+=3;
       }else{
         comboChangeColor = el.childNodes;
-        comboChangeColor[1].style.background="red"
-        comboChangeColor[3].style.background="red"
+        comboChangeColor[1].style.background="#FF4136"
+        comboChangeColor[3].style.background="#FF4136"
         points-=1
       }
     }
@@ -275,22 +275,21 @@ function checkFor13Valve(){
 }
 
 function checkFor123Valve(){
-  valvePosition = getOffset(valve2).top;
+  valvePosition = getOffset(valve2).top+18;
   valve123notes = document.querySelectorAll(".combo123");
   valve123notes.forEach(function(el){
     notePosition = getOffset(el).top;
     if(valvePosition + 4 > notePosition && valvePosition -16 < notePosition){
       if(arraysEqual(currentValves, ["air",1,2,3])){
                 comboChangeColor = el.childNodes;
-        comboChangeColor[1].style.background="green"
-        comboChangeColor[3].style.background="green"
-        comboChangeColor[5].style.background="green"
-        el.style.background="green";
+        comboChangeColor[1].style.background="#2ECC40"
+        comboChangeColor[3].style.background="#2ECC40"
+        comboChangeColor[5].style.background="#2ECC40"
       points+=3;
       } else{
-        comboChangeColor[1].style.background="red"
-        comboChangeColor[3].style.background="red"
-        comboChangeColor[5].style.background="red"
+        comboChangeColor[1].style.background="#FF4136"
+        comboChangeColor[3].style.background="#FF4136"
+        comboChangeColor[5].style.background="#FF4136"
         points-=1
       }
     }
@@ -299,16 +298,16 @@ function checkFor123Valve(){
 
 
 function checkForOpen(){
-  valvePosition = getOffset(valve2).top;
+  valvePosition = getOffset(valve2).top+18;
   openNotes = document.querySelectorAll(".open");
   openNotes.forEach(function(el){
     notePosition = getOffset(el).top;
     if(valvePosition + 4 > notePosition && valvePosition -16 < notePosition){
       if(arraysEqual(currentValves, ["air"])){
-        el.style.background="green";
+        el.style.background="#2ECC40";
       points+=3;
       } else{
-        el.style.background="red";
+        el.style.background="#FF4136";
         points-=1
       }
     }
@@ -320,7 +319,7 @@ const bar = document.querySelector(".bar");
 function checkForAir(){
 let percentAirLeft = meter.offsetWidth/bar.offsetWidth;
 if(percentAirLeft < .2){
-  beats.style.background = "red";
+  beats.style.background = "#FF4136";
   beats.style.transition ="10s";
 } else{
   beats.style.background = "#0f2027";
