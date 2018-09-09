@@ -7,6 +7,17 @@ const audio = new Audio('corduroy.mp3');
 
 const gameplay = document.querySelector(".gameplay");
 
+const gameStartButton = document.querySelector("#gameStartButton");
+const startModal = document.querySelector(".startModal");
+const blurredElements = document.querySelectorAll(".blur")
+
+
+addEventListener("click",function(){
+  startModal.style.display="none"
+  blurredElements.forEach(function(el){
+    el.style.filter="none"
+  })
+});
 
 //Google Chrome blocks audio from autoplaying without user input,
 //so I added a "press enter to begin" functionality 
@@ -337,6 +348,8 @@ if(percentAirLeft<.005){
 
 }
 
+// this checks for user input every millisecond
+
 setInterval(function(){ 
     checkForOpen();
     checkFor1stValve();
@@ -352,7 +365,6 @@ setInterval(function(){
 let scoreDisplay = document.querySelector(".score")
 
 
-//add event listener for enter key
 
 
 
@@ -360,6 +372,7 @@ let scoreDisplay = document.querySelector(".score")
 
 
 
-//check for 1st valve
+
+
 
 

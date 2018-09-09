@@ -6,24 +6,46 @@
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-	<div class="air-meter">
+<!--game lands on a modal-->
+
+<div class="modal startModal">
+	<div class="modal-content">
+		<img src="tptHeroLogo.png" alt="Trumpet hero logo"/>
+	<p>Hey trumpet hero!</p>
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+	<button id="gameStartButton">Ok!</button>
+	</div>
+</div>
+
+	<div class="air-meter blur">
 		<h3>Air</h3>
  		<div class="bar">
    			<div class='meter'></div>
  		</div>
 	</div>
 
-	<div class="scoreboard">
+	<div class="scoreboard blur">
 		<h2>Your Score is: <span class="score"></span></h2>
 	</div>
-	<div class='threeValves'>
+	<div class='threeValves blur'>
 		<div class='valve valve1'></div>
 		<div class='valve valve2'></div>
 		<div class='valve valve3'></div>
 	</div>
-	<div class="gameplay">
+	<div class="gameplay blur">
 
-		<div class="beats"></div>
+		<div class="beats">
+			<div class='beat'>	
+				<p>Press the . key for first valve (on the left)</p>
+				<p>Press the / key for second valve</p>
+				<p>Press shift for third valve</p>
+				<p>Gray notes are open</p>
+				<p>Make sure to hold space to blow air</p>
+				<p>If you blow air for too long, you'll pass out!</p>
+				<p>Press enter to start!</p>
+			</div>
+		</div>
 	<!-- 		<div class="beat">
 				<p>The . key controls first valve (on the left)</p>
 				<p>The ? key controls second valve</p>
@@ -37,7 +59,6 @@
 			<!--KEY-->
 			<!--valves to use | value | note/rest  -->
 			<!-- IF it's a combo of valves, must wrap valves used in 'valve-combo' div -->
-			<div class="whole rest"></div>
 			<div class="whole rest"></div>
 			<div class="whole rest"></div>
 			<div class="whole rest"></div>
