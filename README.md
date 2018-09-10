@@ -44,4 +44,5 @@ Refactoring my checkForX functions: My javascript code to check for valve combos
 
 Different scores depending on window size: This one is a doozy to me. You can score more points if your browser window is smaller. I really don't know how that happened since the valve positions and note positions variables are updated ever milisecond and all of the note and valve sizes are hard coded with pixels. Even though the game is still playable with this issuee, this is obviously a huge issue and I hope to get to the bottom of it soon.
 
+![Wireframe](IMG_3888.JPG)
 
