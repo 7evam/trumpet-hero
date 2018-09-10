@@ -82,7 +82,7 @@ kd.run(function () {
 //currentValves array after the user lets go fo it
 function remove(array, element) {
     const index = array.indexOf(element);
-    array.splice(index, 1);
+    array.splice(ind?>ex, 1);
 }
 
 //spacebar for breath
@@ -185,7 +185,8 @@ let valve23notes = document.querySelectorAll(".combo23");
 let valve13notes = document.querySelectorAll(".combo13");
 let valve123notes = document.querySelectorAll(".combo123");
 
-//this variable isn't actually used,but is how I would have 
+//this variable isn't actually used,but I would have used this to refactor the code below. 
+//these are the only things that change accross all the functions below 
 const comboPairs = [
 [openNotes,["air"]],
 [valve1notes,["air",1]],
