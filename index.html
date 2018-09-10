@@ -7,7 +7,6 @@
 </head>
 <body>
 <!--game lands on a modal-->
-
 <div class="modal startModal">
 	<div class="modal-content">
 		<img src="tptHeroLogo.png" alt="Trumpet hero logo"/>
@@ -20,16 +19,16 @@
 	</div>
 </div>
 
+<!-- game ending modal -->
 <div class="modal gameOverModal">
 	<div class="modal-content">
 		<img src="tptHeroLogo.png" alt="Trumpet hero logo"/>
-	<p id="ending message"></p>
+	<p id="endingMessage"></p>
 	<p>Your final score is <span class="finalScore"></span></p>
-	<button id="gameStartButton">Play Again</button>
 	</div>
 </div>
 
-
+<!-- air meter -->
 	<div class="air-meter blur">
 		<h3>Air</h3>
  		<div class="bar">
@@ -37,6 +36,7 @@
  		</div>
 	</div>
 
+<!-- scoreboard -->
 	<div class="scoreboard blur">
 		<h2>Your Score is: <span class="score"></span></h2>
 	</div>
@@ -45,6 +45,8 @@
 		<div class='valve valve2'></div>
 		<div class='valve valve3'></div>
 	</div>
+
+	<!-- gameboard -->
 	<div class="gameplay blur">
 
 		<div class="beats">
@@ -58,14 +60,6 @@
 				<p>Press enter to start!</p>
 			</div>
 		</div>
-	<!-- 		<div class="beat">
-				<p>The . key controls first valve (on the left)</p>
-				<p>The ? key controls second valve</p>
-				<p>Shift controls third valve</p>
-				<p>Space controls air</p>
-				<br>
-				<p>Play as many notes as you can. Make sure to blow air while playing a note, but don't run out of air!</p>
-			</div> -->
 		
 		<div class=notes>
 			<!--KEY-->
@@ -278,7 +272,6 @@
 			<div class='quarter rest'></div>
 		</div>
 	</div>
-<!-- <script type="text/javascript" src="https://jeremyckahn.github.io/keydrown/dist/keydrown.min.js"></script> -->
 <script type="text/javascript" src="keydrown.js"></script>
 <script type="text/javascript" src="script.js"></script>
 </body>

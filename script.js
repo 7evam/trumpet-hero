@@ -1,19 +1,21 @@
+//basic variables to navigate DOM
 const beats = document.querySelector(".beats");
 const valve1=document.querySelector(".valve1");
 const valve2=document.querySelector(".valve2");
 const valve3=document.querySelector(".valve3");
-let scoreDisplay = document.querySelector(".score")
-
+let scoreDisplay = document.querySelector(".score");
+const finalScore = document.querySelector(".finalScore");
 const audio = new Audio('corduroy.mp3');
-
 const gameplay = document.querySelector(".gameplay");
+const startingPosition = getOffset(gameplay).top;
+let points = 0;
 
-
-//modal logic
+//modal variables
 const gameStartButton = document.querySelector("#gameStartButton");
 const startModal = document.querySelector(".startModal");
 const blurredElements = document.querySelectorAll(".blur");
 const gameOverModal = document.querySelector(".gameOverModal");
+const gameOverMessage = document.querySelector("#endingMessage");
 
 
 //game start modal
@@ -24,34 +26,40 @@ gameStartButton.addEventListener("click",function(){
   })
 });
 
-
-
 //Google Chrome blocks audio from autoplaying without user input,
 //so I added a "press enter to begin" functionality 
 addEventListener('keypress', function (e) {
-let key = e.keyCode;
-if (key===13 && startModal.style.display==="none"){
-audio.currentTime=1;
-audio.play();
-gameplay.style.animationName = "notesMoving"
-setTimeout(function(){
-audio.pause();
-audio.currentTime=0;
-},68000)
-}
+  let key = e.keyCode;
+  if (key===13 && startModal.style.display==="none"){
+    audio.currentTime=1;
+    audio.play();
+    gameplay.style.animationName = "notesMoving"
+    setTimeout(function(){
+    audio.pause();
+    blurredElements.forEach(function(el){
+    el.style.filter="blur(2px)"
+    })
+    audio.currentTime=0;
+    if(points>100){
+      gameOverMessage.textContent="Nice Work!";
+    }else if(points>0){
+      gameOverMessage.textContent="You did okay. Definitely not getting a call back";
+    } else if(points<0){
+      gameOverMessage.textContent="You gotta practice!!";
+    }
+    finalScore.textContent=points;
+    gameOverModal.style.display="block";
+    },68000)
+  }
 });
-let points = 0;
 
 let valve1Note = document.querySelector(".valve1-note");
 valve1Note.classList.contains("");
-
 
 //this creates all the beats
 for(let i=0;i<1000;i++){
   beats.innerHTML+="<div class='beat'></div>"
 }
-
-let body = document.body;
 
 //                                  /-~~~key detection logic~~~-\
 
@@ -65,20 +73,23 @@ let body = document.body;
 //this variable will include all the valves currently being pressed
 let currentValves = [];
 
+//this intitiates keydrown according to its documentation
 kd.run(function () {
   kd.tick();
 });
 
-
+//simple remove function to be used to remove a valve from the 
+//currentValves array after the user lets go fo it
 function remove(array, element) {
     const index = array.indexOf(element);
     array.splice(index, 1);
 }
 
 //spacebar for breath
-
 const meter = document.querySelector(".meter")
 
+
+//if you push a key down, it gets added to currentValves array
 kd.SPACE.down(function(){
   meter.style.width="0%";
   meter.style.transition="17s";
@@ -87,6 +98,7 @@ kd.SPACE.down(function(){
     }
 });
 
+//if you let go of a key, it gets removed from the currentValves array
 kd.SPACE.up(function(){
   meter.style.width="100%";
   meter.style.transition="2s";
@@ -132,8 +144,6 @@ kd.SHIFT.up(function(){
   remove(currentValves,3)
 });
 
-let test = document.getElementById("testing");
-
 
 //                                     ..~~~collision logic~~~..
 
@@ -174,6 +184,8 @@ let valve12notes = document.querySelectorAll(".combo12");
 let valve23notes = document.querySelectorAll(".combo23");
 let valve13notes = document.querySelectorAll(".combo13");
 let valve123notes = document.querySelectorAll(".combo123");
+
+//this variable isn't actually used,but is how I would have 
 const comboPairs = [
 [openNotes,["air"]],
 [valve1notes,["air",1]],
@@ -188,7 +200,9 @@ const comboPairs = [
 //each of these functions checks for different combos
 
 function checkFor1stValve(){
-  valvePosition = getOffset(valve1).top +18;
+  //where the notes get detected
+  valvePosition = getOffset(valve1).top -30;
+  //this adds all the valve1 notes to a valvePosition variable
   valve1notes = document.querySelectorAll(".valve1-note");
   valve1notes.forEach(function(el){
     notePosition = getOffset(el).top;
@@ -206,11 +220,11 @@ function checkFor1stValve(){
 }
 
 function checkFor2ndValve(){
-  valvePosition = getOffset(valve2).top +18;
+  valvePosition = getOffset(valve2).top -30;
   valve2notes = document.querySelectorAll(".valve2-note");
   valve2notes.forEach(function(el){
     notePosition = getOffset(el).top;
-    if(valvePosition + 4 > notePosition && valvePosition -16 < notePosition){
+    if(valvePosition + 10 > notePosition && valvePosition -10 < notePosition){
       if(arraysEqual(currentValves, ["air",2])){
         el.style.background="#2ECC40";
       points+=3;
@@ -225,11 +239,11 @@ function checkFor2ndValve(){
 let comboChangeColor = '';
 
 function checkFor12Valve(){
-  valvePosition = getOffset(valve2).top +18;
+  valvePosition = getOffset(valve2).top-30;
   valve12notes = document.querySelectorAll(".combo12");
   valve12notes.forEach(function(el){
     notePosition = getOffset(el).top;
-    if(valvePosition + 4 > notePosition && valvePosition-16 < notePosition){
+    if(valvePosition + 10 > notePosition && valvePosition-10 < notePosition){
       if(arraysEqual(currentValves, ["air",2,1])){
         comboChangeColor = el.childNodes;
         comboChangeColor[1].style.background="#2ECC40"
@@ -246,11 +260,11 @@ function checkFor12Valve(){
 }
 
 function checkFor23Valve(){
-  valvePosition = getOffset(valve2).top+18;
+  valvePosition = getOffset(valve2).top-30;
   valve23notes = document.querySelectorAll(".combo23");
   valve23notes.forEach(function(el){
     notePosition = getOffset(el).top;
-    if(valvePosition + 4 > notePosition && valvePosition -16 < notePosition){
+    if(valvePosition + 10 > notePosition && valvePosition -10 < notePosition){
       if(arraysEqual(currentValves, ["air",2,3])){
         comboChangeColor = el.childNodes;
         comboChangeColor[1].style.background="#2ECC40"
@@ -267,11 +281,11 @@ function checkFor23Valve(){
 }
 
 function checkFor13Valve(){
-  valvePosition = getOffset(valve2).top+18;
+  valvePosition = getOffset(valve2).top-30;
   valve13notes = document.querySelectorAll(".combo13");
   valve13notes.forEach(function(el){
     notePosition = getOffset(el).top;
-    if(valvePosition + 4 > notePosition && valvePosition -16 < notePosition){
+    if(valvePosition + 10 > notePosition && valvePosition -10 < notePosition){
       if(arraysEqual(currentValves, ["air",1,3])){
         comboChangeColor = el.childNodes;
         comboChangeColor[1].style.background="#2ECC40"
@@ -288,11 +302,11 @@ function checkFor13Valve(){
 }
 
 function checkFor123Valve(){
-  valvePosition = getOffset(valve2).top+18;
+  valvePosition = getOffset(valve2).top-30;
   valve123notes = document.querySelectorAll(".combo123");
   valve123notes.forEach(function(el){
     notePosition = getOffset(el).top;
-    if(valvePosition + 4 > notePosition && valvePosition -16 < notePosition){
+    if(valvePosition + 10 > notePosition && valvePosition -10 < notePosition){
       if(arraysEqual(currentValves, ["air",1,2,3])){
                 comboChangeColor = el.childNodes;
         comboChangeColor[1].style.background="#2ECC40"
@@ -311,11 +325,11 @@ function checkFor123Valve(){
 
 
 function checkForOpen(){
-  valvePosition = getOffset(valve2).top+18;
+  valvePosition = getOffset(valve2).top-30;
   openNotes = document.querySelectorAll(".open");
   openNotes.forEach(function(el){
     notePosition = getOffset(el).top;
-    if(valvePosition + 4 > notePosition && valvePosition -16 < notePosition){
+    if(valvePosition + 10 > notePosition && valvePosition -10 < notePosition){
       if(arraysEqual(currentValves, ["air"])){
         el.style.background="#2ECC40";
       points+=3;
@@ -329,8 +343,11 @@ function checkForOpen(){
 
 const bar = document.querySelector(".bar");
 
+//this function handles the air logic
 function checkForAir(){
+  //get air as a percentage
 let percentAirLeft = meter.offsetWidth/bar.offsetWidth;
+//give player warning when there's low air
 if(percentAirLeft < .2){
   beats.style.background = "#FF4136";
   beats.style.transition ="10s";
@@ -338,20 +355,23 @@ if(percentAirLeft < .2){
   beats.style.background = "#0f2027";
   beats.style.transition ="1s";
 }
-
+//end game if player runs out of air
 if(percentAirLeft<.005){
   gameplay.style.animationDuration="0s";
+  blurredElements.forEach(function(el){
+    el.style.filter="blur(2px)"
+  })
+  gameOverMessage.textContent="Oh no! You forgot to breathe and passed out!";
+  finalScore.textContent=points;
   audio.pause();
   audio.currentTime=0;
   setTimeout(function(){
   gameOverModal.style.display="block"
   },100)
 }
-
 }
 
-// this checks for user input every millisecond
-
+// this checks for user input every millisecond and calls all the functions above
 setInterval(function(){ 
     checkForOpen();
     checkFor1stValve();
@@ -363,18 +383,3 @@ setInterval(function(){
     checkForAir();
     scoreDisplay.innerHTML = points;
 }, 1);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

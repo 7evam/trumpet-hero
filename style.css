@@ -7,7 +7,7 @@
 /*this gets rid of scroller on the browser*/
 body {
     overflow-y:hidden;
-    background-image: url("http://getwallpapers.com/wallpaper/full/7/8/c/72870.jpg");
+    background-image: url("stageCrowd.jpg");
     background-position: center;
 }
 
@@ -91,16 +91,15 @@ transition-timing-function:linear;
 	
 }
 
-/*beats stuff*/
-
+/*beats logic*/
 .beats{
-	margin-top:36px;
-	
+  margin-top:36px;
   background: #0f2027; /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #0f2027, #203a43, #2c5364); /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right, #0f2027, #203a43, #2c5364); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
+/*this puts a border on the divs that create the beats*/
 .beat{
 	margin:0;
 	padding:0;
@@ -128,8 +127,8 @@ transition-timing-function:linear;
 	color:white;
 	text-align: center;
 }
-/*create the valves at the top*/
 
+/*create the valves at the top*/
 .threeValves{
 	display:flex;
 	align-items: center;
@@ -166,7 +165,6 @@ border-color:#C1C4C3;
 
 
 /*this makes the gameplay board of the beats and notes moving*/
-
 .gameplay{
 	margin:0 auto;
 	position:relative;
@@ -175,12 +173,10 @@ border-color:#C1C4C3;
 	/*animation-name: notesMoving;*/
 	animation-duration: 69s;
 	animation-timing-function:linear;
-	animation-iteration-count:  1;
+	animation-iteration-count: 1;
 }
 
 /*overlay the beats and notes*/
-
-
 .beats,.notes{
 	position:absolute;
 	width:100%;
@@ -188,7 +184,6 @@ border-color:#C1C4C3;
 
 
 /*logic that makes each type of note to be played*/
-
 .note{
 	width:72px;
 	height:72px;
@@ -207,7 +202,7 @@ background: linear-gradient(to right, #8E54E9, #4776E6); /* W3C, IE 10+/ Edge, F
 	margin:0 auto;
 }
 
-
+/*all valve combos for notes*/
 .valve1-note{
 	transform: translate(-91px,0px);
 	background:#0074D9;
@@ -221,7 +216,6 @@ background: linear-gradient(to right, #8E54E9, #4776E6); /* W3C, IE 10+/ Edge, F
 	display:flex;
 	justify-content: center;
 	position: relative;
-
 }
 
 .valve1-combo{
@@ -247,6 +241,8 @@ background: linear-gradient(to right, #8E54E9, #4776E6); /* W3C, IE 10+/ Edge, F
 	border-radius: 5%;
 }
 
+/*all rhythmic values for notes*/
+/*set 16th notes as 72px height, everything else follows that ratio*/
 
 .sixteenth{
 height:72px;
@@ -276,12 +272,9 @@ height:72px;
 	height:1152px;
 }
 
-/*animation to move board!*/
-
+/*animation to move board*/
 @keyframes notesMoving {
-
 100%{
 	transform: translateY(-30500px);
 }
-
 }
