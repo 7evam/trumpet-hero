@@ -115,7 +115,7 @@ transition-timing-function:linear;
 }
 
 /*every new measure has red beat*/
-.beat:nth-child(4n-3) {
+.beat:nth-child(4n-1) {
     border-top:1px solid red;
 }
 
@@ -281,7 +281,7 @@ height:72px;
 @keyframes notesMoving {
 
 100%{
-	transform: translateY(-30600px);
+	transform: translateY(-30500px);
 }
 
 }

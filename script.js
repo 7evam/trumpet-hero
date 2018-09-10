@@ -31,6 +31,7 @@ gameStartButton.addEventListener("click",function(){
 addEventListener('keypress', function (e) {
 let key = e.keyCode;
 if (key===13 && startModal.style.display==="none"){
+audio.currentTime=1;
 audio.play();
 gameplay.style.animationName = "notesMoving"
 setTimeout(function(){
@@ -182,16 +183,6 @@ const comboPairs = [
 [valve13notes,["air",1,3]],
 [valve123notes,["air",1,2,3]],
 ];
-
-// attempting to refactor all the functions below:
-function checkForNote(){
-  //i update the variable here because it changes if the window size changes
-  valvePosition = getOffset(valve1).top;
-
-for(let i=0;i<comboPairs.length;i++){
-  console.log(comboPairs[i][0]+" + "+comboPairs[i][1]);
-}
-}
 
 
 //each of these functions checks for different combos
