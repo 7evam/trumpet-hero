@@ -61,35 +61,26 @@ for(let i=0;i<1000;i++){
   beats.innerHTML+='<div class="beat"></div>'
 }
 
-//                                  /-~~~key detection logic~~~-\
-
-///turns out, it's very difficult to get an  
-//accurate reading of when a key is held down
-//luckily, I found KEYDROWN, this SUPER small(<.5kb) 
-//and SUPER easy to use library that does the trick
-
-//BIG shout out to Jeremy Kahn at https://github.com/jeremyckahn :) :) :)
-
-//this variable will include all the valves currently being pressed
+// this variable will include all the valves currently being pressed
 let currentValves = [];
 
-//this intitiates keydrown according to its documentation
+// this intitiates keydrown according to its documentation
 kd.run(function () {
   kd.tick();
 });
 
-//simple remove function to be used to remove a valve from the 
-//currentValves array after the user lets go fo it
+// simple remove function to be used to remove a valve from the 
+// currentValves array after the user lets go fo it
 function remove(array, element) {
     const index = array.indexOf(element);
     array.splice(index, 1);
 }
 
-//spacebar for breath
+// spacebar for breath
 const meter = document.querySelector('.meter')
 
 
-//if you push a key down, it gets added to currentValves array
+// if you push a key down, it gets added to currentValves array
 kd.SPACE.down(function(){
   meter.style.width='0%';
   meter.style.transition='17s';
@@ -106,7 +97,6 @@ kd.SPACE.up(function(){
 });
 
 //need to use these keys because of keyboard ghosting
-
 kd.PERIOD.down(function(){
     valve1.style.border='6px solid #0074D9';
     if(!currentValves.includes(1)){
@@ -144,12 +134,7 @@ kd.SHIFT.up(function(){
   remove(currentValves,3)
 });
 
-
-//                                     ..~~~collision logic~~~..
-
-//THANK YOU ADAM GRANT FROM STACK OVERFLOW
-//FOR THIS AMAZING AND SIMLPLE getOffset FUNCTION
-//https://stackoverflow.com/questions/442404/retrieve-the-position-x-y-of-an-html-element
+// collision logic
 function getOffset(el) {
   const rect = el.getBoundingClientRect();
   return {
@@ -158,9 +143,7 @@ function getOffset(el) {
   };
 }
 
-//props to 
-//https://stackoverflow.com/questions/6229197/how-to-know-if-two-arrays-have-the-same-values
-//for this smart function to determine if two arrays have the same values
+// check if arrays are equal
 function arraysEqual(arr1, arr2) {
     if (!Array.isArray(arr1) || ! Array.isArray(arr2) || arr1.length !== arr2.length)
       return false;
@@ -174,8 +157,7 @@ function arraysEqual(arr1, arr2) {
 }
 
 //if valve 1 div has similar position to valve 1 AND correct combo of valves is being pushed
-
-//I have to use let statements here because the values change if the window is resized
+//Using let statements here because the values change if the window is resized
 let valvePosition = getOffset(valve1).top;
 let openNotes = document.querySelectorAll('.open');
 let valve1notes = document.querySelectorAll('.valve1-note');
@@ -217,61 +199,61 @@ for(let i=0;i<3;i++){
   }
 }
 
-//this functino checks for notes that are multiple valves and adds points and changes the colors of the child elements accordingly
+// checks for notes that are multiple valves and adds points and changes the colors of the child elements accordingly
 function checkForValves(){
   //where the notes get detected
   valvePosition = getOffset(valve1).top -20;
   //this adds all the valve1 notes to a valvePosition variable
-for(let i=3;i<7;i++){
-  comboPairs[i][0].forEach(function(el){
-    notePosition = getOffset(el).top;
-      if(valvePosition+ 10 > notePosition && valvePosition-10 < notePosition){  
-        if(arraysEqual(currentValves, comboPairs[i][1])){
-          points+=3;
-          let rightValvesInCombo = el.children;
-          for(let k=0;k<rightValvesInCombo.length;k++){
-            rightValvesInCombo[k].style.background='#2ECC40';
-          }
-        }else{
-         points-=1;
-          let wrongValvesInCombo = el.children;
-          for(let k=0;k<wrongValvesInCombo.length;k++){
-            wrongValvesInCombo[k].style.background='#FF4136';
+  for(let i=3;i<7;i++){
+    comboPairs[i][0].forEach(function(el){
+      notePosition = getOffset(el).top;
+        if(valvePosition+ 10 > notePosition && valvePosition-10 < notePosition){  
+          if(arraysEqual(currentValves, comboPairs[i][1])){
+            points+=3;
+            let rightValvesInCombo = el.children;
+            for(let k=0;k<rightValvesInCombo.length;k++){
+              rightValvesInCombo[k].style.background='#2ECC40';
+            }
+          } else {
+            points-=1;
+            let wrongValvesInCombo = el.children;
+            for(let k=0;k<wrongValvesInCombo.length;k++){
+              wrongValvesInCombo[k].style.background='#FF4136';
+            }
           }
         }
-      }
     });
   }
 }
 
 const bar = document.querySelector('.bar');
 
-//this function handles the air logic
+// handles the air logic
 function checkForAir(){
   //get air as a percentage
-let percentAirLeft = meter.offsetWidth/bar.offsetWidth;
-//give player warning when there's low air
-if(percentAirLeft < .2){
-  beats.style.background = '#FF4136';
-  beats.style.transition ='10s';
-} else{
-  beats.style.background = '#0f2027';
-  beats.style.transition ='1s';
-}
-//end game if player runs out of air
-if(percentAirLeft<.005){
-  gameplay.style.animationDuration='0s';
-  blurredElements.forEach(function(el){
-    el.style.filter='blur(2px)'
-  })
-  gameOverMessage.textContent='Oh no! You forgot to breathe and passed out!';
-  finalScore.textContent=points;
-  audio.pause();
-  audio.currentTime=0;
-  setTimeout(function(){
-  gameOverModal.style.display='block'
-  },100)
-}
+  let percentAirLeft = meter.offsetWidth/bar.offsetWidth;
+  //give player warning when there's low air
+  if(percentAirLeft < .2){
+    beats.style.background = '#FF4136';
+    beats.style.transition ='10s';
+  } else {
+    beats.style.background = '#0f2027';
+    beats.style.transition ='1s';
+  }
+  //end game if player runs out of air
+  if(percentAirLeft<.005){
+    gameplay.style.animationDuration='0s';
+    blurredElements.forEach(function(el){
+      el.style.filter='blur(2px)'
+    })
+    gameOverMessage.textContent='Oh no! You forgot to breathe and passed out!';
+    finalScore.textContent=points;
+    audio.pause();
+    audio.currentTime=0;
+    setTimeout(function(){
+    gameOverModal.style.display='block'
+    },100)
+  }
 }
 
 // this checks for user input every millisecond and calls all the functions above
